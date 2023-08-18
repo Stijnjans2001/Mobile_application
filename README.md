@@ -6,4 +6,4 @@ Ensure an adaptive UI that adjusts to both iOS and Android.
 
 Example:
 
-![Stino pops](https://github.com/Stijnjans2001/Mobile_application/assets/82269000/76ae2d44-5778-411f-90f4-5b4be9b73952)
+![Stino-pops-e1692265788173-143x300](https://github.com/Stijnjans2001/Mobile_application/assets/82269000/bc417190-7940-456e-98f1-aa90feafb738)
