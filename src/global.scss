@@ -1,0 +1,123 @@
+/*
+ * App Global CSS
+ * ----------------------------------------------------------------------------
+ * Put style rules here that you want to apply globally. These styles are for
+ * the entire app and not just one component. Additionally, this file can be
+ * used as an entry point to import other CSS/Sass files to be included in the
+ * output CSS.
+ * For more information on global stylesheets, visit the documentation:
+ * https://ionicframework.com/docs/layout/global-stylesheets
+ */
+
+/* Core CSS required for Ionic components to work properly */
+@import "~@ionic/angular/css/core.css";
+
+/* Basic CSS for apps built with Ionic */
+@import "~@ionic/angular/css/normalize.css";
+@import "~@ionic/angular/css/structure.css";
+@import "~@ionic/angular/css/typography.css";
+@import '~@ionic/angular/css/display.css';
+
+/* Optional CSS utils that can be commented out */
+@import "~@ionic/angular/css/padding.css";
+@import "~@ionic/angular/css/float-elements.css";
+@import "~@ionic/angular/css/text-alignment.css";
+@import "~@ionic/angular/css/text-transformation.css";
+@import "~@ionic/angular/css/flex-utils.css";
+
+#container {
+  background-color: #D9D9D9;
+  text-align: center;
+}
+
+#title {
+  color: black;
+  font-size: 40px;
+  text-align: center;
+}
+
+ion-icon {
+  color: black;
+  font-size: 30px;
+}
+
+#backbutton{
+  color: black;
+  font-size: 30px;
+}
+
+#menubutton, #menubutton1{
+  visibility: hidden;
+}
+
+#subtitle {
+  font-size: 20px;
+}
+
+#filter{
+  padding: 0;
+  display: inline-flex;
+  justify-content: center;
+  width: auto;
+  align-content: end;
+  height: auto;
+  & ion-item::part(native){
+    background: #d9d9d9;
+  }
+  & ion-select{
+    --placeholder-color: black;
+    --placeholder-opacity: 1;
+  }
+  & ion-select::part(icon) {
+    color: black;
+    opacity: 1;
+  }
+}
+
+.customButtonContent{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 5px;
+  font-weight: bold;
+}
+
+.footer{
+  align-content: center;
+  justify-content: center;
+  text-align: center;
+  padding: 0;
+  margin: 0;
+}
+
+body.scanner-active {
+  --background: transparent;
+  --ion-background-color: transparent;
+}
+
+ion-modal#example-modal {
+  --width: fit-content;
+  --min-width: 250px;
+  --height: fit-content;
+  --border-radius: 6px;
+  --box-shadow: 0 28px 48px rgba(0, 0, 0, 0.4);
+}
+
+ion-modal#example-modal h1 {
+  margin: 20px 20px 10px 20px;
+}
+
+ion-modal#example-modal ion-icon {
+  margin-right: 6px;
+
+  width: 48px;
+  height: 48px;
+
+  padding: 4px 0;
+
+  color: #aaaaaa;
+}
+
+ion-modal#example-modal .wrapper {
+  margin-bottom: 10px;
+}

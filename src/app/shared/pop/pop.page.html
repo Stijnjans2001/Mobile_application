@@ -1,0 +1,108 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-grid >
+      <ion-row>
+        <ion-col size="auto">
+          <ion-button fill="clear">
+            <ion-back-button defaultHref="/" id="backbutton"></ion-back-button>
+          </ion-button>
+        </ion-col>
+        <ion-col>
+          <ion-title id="title">Stino's</ion-title>
+        </ion-col>
+        <ion-col size="auto">
+          <ion-button fill="clear" disabled="true" id="menubutton">
+            <ion-icon slot="icon-only" name="menu"></ion-icon>
+          </ion-button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-img alt="{{retrievedPop.title}}" src="{{retrievedPop.image}}" (error)="handleImageError()"
+           style="height: 35%; margin: auto; display: block" class="ion-align-self-center" *ngIf="retrievedPop.image !== ''"></ion-img>
+  <ion-img alt="{{retrievedPop.title}}" [src]="this.image" (error)="handleImageError()"
+           style="height: 35%; margin: auto; display: block" class="ion-align-self-center" *ngIf="retrievedPop.image === ''"></ion-img>
+  <div style="text-align: center">
+    <ion-text style="font-size: xx-large; margin: auto; display: block">{{retrievedPop.title}}</ion-text>
+    <ion-button color="secondary" style="width: 70%" shape="round" (click)="toggleLike(retrievedPop)">
+      <ion-icon class="icon" slot="start" [name]="liked ? 'heart' : 'heart-outline' "></ion-icon>
+      <ion-text color="dark" style="font-weight: bold">LIKE</ion-text>
+    </ion-button>
+    <ion-button color="secondary" style="width: 70%" shape="round" (click)="toggleCollected(retrievedPop)">
+      <ion-icon class="icon" slot="start" [name]="collected ? 'images' : 'images-outline'"></ion-icon>
+      <ion-text color="dark" style="font-weight: bold">ADD TO COLLECTION</ion-text>
+    </ion-button>
+    <ion-button color="secondary" style="width: 70%" shape="round" id="openModal">
+      <ion-icon name="create-outline" class="icon" slot="start"></ion-icon>
+      <ion-text color="dark" style="font-weight: bold">EDIT</ion-text>
+    </ion-button>
+      <ion-button color="secondary" style="width: 70%" shape="round"  (click)="presentActionSheet()">
+        <ion-icon name="trash-outline" class="icon" slot="start"></ion-icon>
+        <ion-text color="dark" style="font-weight: bold">DELETE</ion-text>
+      </ion-button>
+  </div>
+  <div style="text-align: center">
+    <p>
+      <ion-text style="font-weight: bold">Series: </ion-text>{{retrievedPop.series}}
+    </p>
+    <p>
+      <ion-text style="font-weight: bold">Release: </ion-text>{{currentYear}}
+    </p>
+    <p>
+      <ion-text style="font-weight: bold">Status: </ion-text>NEW
+    </p>
+    <p>
+      <ion-text style="font-weight: bold">Item number: </ion-text>{{retrievedPop.id}}
+    </p>
+  </div>
+
+  <ion-modal id="example-modal" trigger="openModal" (willDismiss)="OnWillDismiss($event)">
+    <ng-template>
+      <div class="wrapper">
+      <ion-header>
+        <ion-toolbar>
+          <ion-title>
+            Update this pop
+          </ion-title>
+        </ion-toolbar>
+      </ion-header>
+      <ion-list lines="none">
+        <ion-item>
+          <ion-label position="stacked">
+            Pop name:
+          </ion-label>
+          <ion-input type="text" placeholder="enter a name" [(ngModel)]="newPop.title">
+
+          </ion-input>
+        </ion-item>
+        <ion-item button="true" (click)="TakePicture()">
+          Take a picture for this pop
+        </ion-item>
+        <ion-item>
+          <ion-label position="stacked">
+            Pop series:
+          </ion-label>
+          <ion-input type="text" placeholder="enter a serie" [(ngModel)]="newPop.series">
+
+          </ion-input>
+        </ion-item>
+      </ion-list>
+        <ion-toolbar>
+          <ion-buttons slot="start">
+            <ion-button color="primary" fill="solid" (click)="CancelPop()">
+              Cancel
+            </ion-button>
+          </ion-buttons>
+          <ion-buttons slot="end">
+            <ion-button color="primary" fill="solid" (click)="ConfirmPop()">
+              Create
+            </ion-button>
+          </ion-buttons>
+        </ion-toolbar>
+      </div>
+    </ng-template>
+  </ion-modal>
+</ion-content>

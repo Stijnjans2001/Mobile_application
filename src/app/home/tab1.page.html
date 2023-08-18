@@ -1,0 +1,113 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <!-- Divider met header -->
+    <ion-item-divider >
+      <!-- Header -->
+      <ion-grid >
+        <ion-row>
+          <ion-col size="auto">
+            <ion-button fill="clear" disabled="true" id="menubutton">
+              <ion-icon slot="icon-only" name="menu"></ion-icon>
+            </ion-button>
+          </ion-col>
+          <ion-col>
+            <ion-title id="title">Stino's</ion-title>
+          </ion-col>
+          <ion-col size="auto">
+            <ion-button fill="clear" disabled="true" id="menubutton1">
+              <ion-icon slot="icon-only" name="search"></ion-icon>
+            </ion-button>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-item-divider>
+    <!-- Sticky subheader -->
+    <ion-grid style="background-color: #D5D5D5">
+      <ion-row>
+        <ion-col>
+          <ion-row *ngIf="(popListObservable | async); let aantal;">
+            <ion-text>Total of pops: {{aantal.length}}</ion-text>
+          </ion-row>
+          <ion-row>
+            <ion-text id="subtitle">Stino's full catalog</ion-text>
+          </ion-row>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true"
+             [scrollEvents]='true'>
+<!--             (ionScrollStart)="logScrollStart()"-->
+<!--             (ionScrollEnd)="logScrollEnd()">-->
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">Stino's</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <ng-container *ngIf="(popCollectedListObservable | async); let collectedList;">
+    <ng-container *ngIf="(popLikedListObservable | async); let likedList;">
+      <ion-row *ngIf="(popListObservable | async); let pops;">
+        <ion-col size="6" *ngFor="let p of pops; let i = index">
+          <app-card [pop]="p" [liked]="likedList.includes(p)" [collected]="collectedList.includes(p)"></app-card>
+        </ion-col>
+      </ion-row>
+    </ng-container>
+  </ng-container>
+
+  <ion-fab *ngIf='fabIsVisible' [vertical]='verticalFabPosition' horizontal='end' slot='fixed'>
+    <ion-fab-button color="secondary" id="openModal1">
+      <ion-icon name='add'></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+
+  <ion-modal id="example-modal" trigger="openModal1" (willDismiss)="OnWillDismiss($event)">
+    <ng-template>
+      <div class="wrapper">
+        <ion-header>
+          <ion-toolbar>
+            <ion-title>
+              Add a new pop
+            </ion-title>
+          </ion-toolbar>
+        </ion-header>
+          <ion-list lines="none">
+            <ion-item>
+              <ion-label position="stacked">
+                Pop name:
+              </ion-label>
+              <ion-input type="text" placeholder="enter a name" [(ngModel)]="newPop.title">
+
+              </ion-input>
+            </ion-item>
+            <ion-item button="true" (click)="TakePicture()">
+              Take a picture for this pop
+            </ion-item>
+            <ion-item>
+              <ion-label position="stacked">
+                Pop series:
+              </ion-label>
+              <ion-input type="text" placeholder="enter a serie" [(ngModel)]="newPop.series">
+
+              </ion-input>
+            </ion-item>
+          </ion-list>
+          <ion-toolbar>
+            <ion-buttons slot="start">
+              <ion-button color="primary" fill="solid" (click)="CancelPop()">
+                Cancel
+              </ion-button>
+            </ion-buttons>
+            <ion-buttons slot="end">
+              <ion-button color="primary" fill="solid" (click)="ConfirmPop()">
+                Create
+              </ion-button>
+            </ion-buttons>
+          </ion-toolbar>
+      </div>
+    </ng-template>
+  </ion-modal>
+
+</ion-content>

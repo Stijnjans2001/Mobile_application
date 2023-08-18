@@ -1,0 +1,42 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>
+      Account
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">Account</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <div>
+    <ion-item class="ion-margin-vertical" color="light" (click)="authService.signInWithGoogle()">
+      <div slot="start">
+        <ion-icon size="large"  name="logo-google"></ion-icon>
+      </div>
+      <ion-label>Log in using Google</ion-label>
+    </ion-item>
+  </div>
+
+  <ion-item>
+    <ion-avatar slot="start">
+      <img [src]="authService.getProfilePic()">
+    </ion-avatar>
+    <ion-label>
+      <ion-list-header>username: {{authService.getDisplayName()}}</ion-list-header>
+      <ion-note *ngIf="authService.getEmail()" class="ion-margin-start">
+        email: {{authService.getEmail()}}
+      </ion-note>
+    </ion-label>
+  </ion-item>
+
+  <ion-list *ngIf="authService.isLoggedIn()" lines="none">
+    <ion-item (click)="authService.signOut()">
+      Logout
+    </ion-item>
+  </ion-list>
+</ion-content>

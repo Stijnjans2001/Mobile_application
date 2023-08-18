@@ -1,0 +1,26 @@
+<ion-card>
+  <ion-card-header (click)="router.navigate(['/pop', pop.id])">
+  <img *ngIf="pop.image !== ''" src="{{pop.image}}" alt="{{pop.title}}" style="height: 150px !important;  width: auto; margin: auto; display: block;"/>
+    <img *ngIf="pop.image === ''" src="{{this.image}}" alt="{{pop.title}}" style="height: 150px !important;  width: auto; margin: auto; display: block;"/>
+    <ion-card-title style="text-align: center">{{pop.title}}</ion-card-title>
+    <p><strong>Type:</strong> {{pop.series}}</p>
+    <p><strong>Release:</strong> 2023</p>
+  </ion-card-header>
+  <ion-card-content style="background-color: #3880ff">
+    <ion-grid>
+      <ion-row>
+        <ion-col size="6">
+          <ion-button fill="clear" expand="6" (click)="toggleLike(pop)">
+            <ion-icon [name]="liked ? 'heart' : 'heart-outline' "></ion-icon>
+          </ion-button>
+        </ion-col>
+        <ion-col size="6">
+          <ion-button fill="clear" expand="6" (click)="toggleCollected(pop)">
+            <ion-icon [name]="collected ? 'images' : 'images-outline'"></ion-icon>
+          </ion-button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-card-content>
+</ion-card>
+
